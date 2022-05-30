@@ -1,9 +1,24 @@
+
+<?php
+
+function old($name){
+    if(isset($_POST[$name])){
+        echo $_POST[$name];
+    }else{
+        echo "";
+    }
+}
+
+?>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 <script type="text/javascript">
 function submitData() {
+   
     $(document).ready(function() {
+        
         var data = {
             name: $('#name').val(),
             email: $('#email').val(),
@@ -28,6 +43,16 @@ function submitData() {
 
             }
         });
+    });
+}
+dataload();
+function dataload(){
+    $.ajax({
+        url:'alluser.php',
+        success:function(data){
+
+        }
+
     });
 }
 </script>

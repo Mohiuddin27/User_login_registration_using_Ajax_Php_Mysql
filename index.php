@@ -83,7 +83,7 @@ if(isset($_SESSION["id"])){
                                             <input type="hidden" id="action" value="register">
                                             <div class="form-group">
 
-                                                <input id="name" class="form-control" type="text" placeholder="Name">
+                                                <input id="name" class="form-control" value="<?php echo old('name') ?>" type="text" placeholder="Name">
                                             </div>
                                             <div class="form-group">
 

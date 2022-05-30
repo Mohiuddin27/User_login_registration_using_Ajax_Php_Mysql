@@ -1,5 +1,8 @@
 <?php
+require 'script.php';
 require 'function.php';
+$conn= new mysqli('localhost','root','','project_ajax');
+$data=$conn->query("SELECT * FROM users");
 if(isset($_SESSION["id"])){
   $id = $_SESSION["id"];
   $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE id = $id"));
@@ -185,30 +188,40 @@ else{
                 <div class="col-md-7 col-lg-8 col-xl-9">
 
                     <div class="row">
-                        <div class="col-md-6 offset-3">
+                        <div class="col-md-12">
                             <div class="card mt-5">
                                 <div class="card-body">
-                                    <div class="profile-pic text-center">
-                                        <img src="assets/media/img/avatar.jpg" class="mt-3" alt="User Image">
-                                    </div>
-                                    <table class="table table-striped mt-3">
-                                    <tr>
-                                        <td>Name :</td>
-                                        <td><?php  echo $user['name']; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Email :</td>
-                                        <td><?php  echo $user['email']; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cell :</td>
-                                        <td><?php  echo $user['cell']; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Username :</td>
-                                        <td><?php  echo $user['username']; ?></td>
-                                    </tr>
-                                    
+                                    <table class="table table-dark table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Cell</th>
+                                                <th scope="col">Username</th>
+                                                <th scope="col">Password</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php   
+                                             $i=1; 
+                                              while($d=$data->fetch_object()):
+                                            ?>
+                                            <tr>
+                                                <th><?php echo $i ;$i=$i+1;?></th>
+                                                <td><?php echo $d->name; ?></td>
+                                                <td><?php echo $d->email; ?></td>
+                                                <td><?php echo $d->cell; ?></td>
+                                                <td><?php echo $d->username; ?></td>
+                                                <td><?php echo $d->password; ?></td>
+                                            </tr>
+                                            <?php 
+                                             endwhile;
+                                            ?>
+                                           
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -224,8 +237,8 @@ else{
     </div>
     <!-- /Page Content -->
 
- <!-- footer start -->
- <footer class="mt-5">
+    <!-- footer start -->
+    <footer class="mt-5">
         <div class="container pt-5">
             <div class="row">
                 <div class="col-md-3">

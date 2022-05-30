@@ -46,6 +46,8 @@ function register(){
 
     echo "Register Successfull";
 
+
+
     
     exit;
 
